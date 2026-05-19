@@ -1,20 +1,15 @@
 import React, { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
-import { submitStart, submitSuccess, submitFailure, resetForm } from '../store'
 import { Send, CheckCircle, AlertCircle, Mail, Github, Linkedin, Twitter } from 'lucide-react'
 import LightBeamButton from './LightBeamButton/LightBeamButton'
 import GlassIcons from './GlassIcons/GlassIcons'
-
 import GridScan from './GridScan/GridScan'
-
-const API_BASE_URL = 'https://jeevan-portfolio-api.onrender.com/api';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
-  const { loading, success, error } = useSelector((state) => state.contact)
-  const dispatch = useDispatch()
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState('')
   const ref = useRef(null)
   const isInView = useInView(ref, { margin: "200px" })
 
@@ -30,15 +25,36 @@ const Contact = () => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    dispatch(submitStart())
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess(false);
+
     try {
-      await axios.post(`${API_BASE_URL}/contact`, formData)
-      dispatch(submitSuccess())
-      setFormData({ name: '', email: '', message: '' })
-      setTimeout(() => dispatch(resetForm()), 5000)
+      const submissionData = new FormData();
+      submissionData.append("access_key", "0f737d1c-222e-49fe-97ba-0ff77f2164d2");
+      submissionData.append("name", formData.name);
+      submissionData.append("email", formData.email);
+      submissionData.append("message", formData.message);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: submissionData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSuccess(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setSuccess(false), 5000);
+      } else {
+        setError(data.message || 'Something went wrong.');
+      }
     } catch (err) {
-      dispatch(submitFailure(err.response?.data?.message || 'Something went wrong.'))
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
     }
   }
 
