@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 const VERT = `#version 300 es
 in vec2 position;
@@ -123,10 +124,10 @@ export function Aurora(props) {
 
     const isMobile = window.innerWidth < 768;
     const renderer = new Renderer({
-      dpr: isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.5),
+      dpr: Math.min(window.devicePixelRatio || 1, 1.5),
       alpha: true,
       premultipliedAlpha: true,
-      antialias: !isMobile
+      antialias: false
     });
     const gl = renderer.gl;
     
@@ -174,7 +175,6 @@ export function Aurora(props) {
     const mesh = new Mesh(gl, { geometry, program });
     ctn.appendChild(gl.canvas);
 
-    let animateId = 0;
     let isVisible = true;
 
     const observer = new IntersectionObserver(
@@ -186,7 +186,6 @@ export function Aurora(props) {
     observer.observe(ctn);
 
     const update = (t) => {
-      animateId = requestAnimationFrame(update);
       if (!isVisible) return;
       
       const { time: propTime = t * 0.01, speed: propSpeed = 1.0 } = propsRef.current;
@@ -205,12 +204,12 @@ export function Aurora(props) {
         renderer.render({ scene: mesh });
       }
     };
-    animateId = requestAnimationFrame(update);
+    addAnimation(update);
     resize();
 
     return () => {
       observer.disconnect();
-      cancelAnimationFrame(animateId);
+      removeAnimation(update);
       window.removeEventListener('resize', resize);
       if (ctn && gl.canvas.parentNode === ctn) {
         ctn.removeChild(gl.canvas);

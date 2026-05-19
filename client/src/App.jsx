@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Header from './components/Header'
 import Home from './components/Home'
-import About from './components/About'
-import Skills from './components/Skills'
-import Projects from './components/Projects'
-import Certifications from './components/Certifications'
-import Contact from './components/Contact'
 import Footer from './components/Footer'
-import Resume from './components/Resume'
 import TargetCursor from './components/TargetCursor/TargetCursor'
-
 import SmoothScroll from './components/SmoothScroll'
-import CertificationDetail from './components/CertificationDetail'
 import LoadingScreen from './components/LoadingScreen/LoadingScreen'
-import SkillsOverview from './components/SkillsOverview'
+
+const About = lazy(() => import('./components/About'));
+const Skills = lazy(() => import('./components/Skills'));
+const Projects = lazy(() => import('./components/Projects'));
+const Certifications = lazy(() => import('./components/Certifications'));
+const Contact = lazy(() => import('./components/Contact'));
+const Resume = lazy(() => import('./components/Resume'));
+const CertificationDetail = lazy(() => import('./components/CertificationDetail'));
+const SkillsOverview = lazy(() => import('./components/SkillsOverview'));
 
 const MainContent = () => (
   <main>
@@ -49,11 +49,11 @@ function App() {
       <AnimatePresence mode="wait">
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>
-      
+
       <SmoothScroll>
         <div className="min-h-screen relative">
           {!isTouchDevice && (
-            <TargetCursor 
+            <TargetCursor
               spinDuration={2}
               hideDefaultCursor
               parallaxOn
@@ -62,11 +62,13 @@ function App() {
             />
           )}
           <Header />
-          <Routes>
-            <Route path="/" element={<MainContent />} />
-            <Route path="/certifications" element={<CertificationDetail />} />
-            <Route path="/skills" element={<SkillsOverview />} />
-          </Routes>
+          <Suspense fallback={<div className="min-h-screen bg-black" />}>
+            <Routes>
+              <Route path="/" element={<MainContent />} />
+              <Route path="/certifications" element={<CertificationDetail />} />
+              <Route path="/skills" element={<SkillsOverview />} />
+            </Routes>
+          </Suspense>
           <Footer />
         </div>
       </SmoothScroll>

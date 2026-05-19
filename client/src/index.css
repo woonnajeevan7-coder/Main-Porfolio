@@ -15,9 +15,29 @@
   body {
     @apply bg-background text-slate-200 antialiased selection:bg-primary/30;
     overflow-x: hidden;
+    text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     touch-action: pan-y;
+  }
+
+  img {
+    will-change: transform;
+  }
+
+  .gpu-layer {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  .optimized-animation {
+    will-change: transform, opacity;
+  }
+
+  .remove-blur {
+    backdrop-filter: none !important;
+    filter: none !important;
   }
 
   html.lenis {

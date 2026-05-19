@@ -168,7 +168,7 @@ const GlowCard = ({
           rounded-2xl 
           relative 
           shadow-[0_1rem_2rem_-1rem_black] 
-          backdrop-blur-[10px]
+          remove-blur bg-black/40 border border-white/10
           ${className}
         `}
       >

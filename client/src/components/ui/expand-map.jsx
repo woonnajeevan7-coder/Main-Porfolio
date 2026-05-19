@@ -255,7 +255,7 @@ export function LocationMap({
             </div>
 
             <motion.div
-              className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-900/5 backdrop-blur-sm border border-slate-900/10"
+              className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-900/5 remove-blur bg-black/40 border border-white/10 border border-slate-900/10"
               animate={{
                 scale: isHovered ? 1.05 : 1,
               }}

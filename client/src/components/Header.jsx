@@ -59,7 +59,7 @@ const Header = () => {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.8 }}
         onClick={toggleTheme}
-        className="fixed top-6 right-6 pointer-events-auto group flex items-center justify-center w-12 h-12 rounded-2xl border border-white/20 bg-white/10 dark:bg-black/20 backdrop-blur-md shadow-lg z-[1001] transition-all hover:scale-110 active:scale-95"
+        className="fixed top-6 right-6 pointer-events-auto group flex items-center justify-center w-12 h-12 rounded-2xl border border-white/20 bg-white/10 dark:bg-black/20 remove-blur bg-black/40 border border-white/10 shadow-lg z-[1001] transition-all hover:scale-110 active:scale-95"
       >
         <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br from-primary/20 to-secondary/20" />
         {isDark ? <Sun className="text-yellow-400 z-10" size={20} /> : <Moon className="text-slate-700 z-10" size={20} />}

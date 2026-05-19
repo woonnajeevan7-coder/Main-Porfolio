@@ -1,6 +1,7 @@
 import { BloomEffect, EffectComposer, EffectPass, RenderPass, SMAAEffect, SMAAPreset } from 'postprocessing';
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 import './Hyperspeed.css';
 
@@ -383,7 +384,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
 
         this.renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance" });
         this.renderer.setSize(initW, initH, false);
-        this.renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.5));
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
         this.composer = new EffectComposer(this.renderer);
         container.append(this.renderer.domElement);
 
@@ -542,7 +543,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
         });
         this.observer.observe(this.container);
 
-        this.tick();
+        addAnimation(this.tick);
       }
 
       onMouseDown(ev) {
@@ -615,6 +616,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
 
       dispose() {
         this.disposed = true;
+        removeAnimation(this.tick);
 
         if (this.scene) {
           this.scene.traverse(object => {
@@ -682,7 +684,6 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
               this.composer.setSize(w, h);
               this.hasValidSize = true;
             } else {
-              requestAnimationFrame(this.tick);
               return;
             }
           }
@@ -701,8 +702,6 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
             this.update(delta);
           }
         }
-
-        requestAnimationFrame(this.tick);
       }
     }
 

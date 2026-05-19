@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Renderer, Camera, Geometry, Program, Mesh } from 'ogl';
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 import './Particles.css';
 
@@ -109,10 +110,10 @@ const Particles = ({
 
     const isMobile = window.innerWidth < 768;
     const renderer = new Renderer({
-      dpr: isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 1.5),
+      dpr: Math.min(window.devicePixelRatio || 1, 1.5),
       depth: false,
       alpha: true,
-      antialias: !isMobile
+      antialias: false
     });
     const gl = renderer.gl;
     container.appendChild(gl.canvas);
@@ -184,7 +185,6 @@ const Particles = ({
 
     const particles = new Mesh(gl, { mode: gl.POINTS, geometry, program });
 
-    let animationFrameId;
     let lastTime = performance.now();
     let elapsed = 0;
     let isVisible = true;
@@ -196,7 +196,6 @@ const Particles = ({
     observer.observe(container);
 
     const update = t => {
-      animationFrameId = requestAnimationFrame(update);
       if (!isVisible) return;
       
       const delta = t - lastTime;
@@ -222,7 +221,7 @@ const Particles = ({
       renderer.render({ scene: particles, camera });
     };
 
-    animationFrameId = requestAnimationFrame(update);
+    addAnimation(update);
 
     return () => {
       observer.disconnect();
@@ -230,7 +229,7 @@ const Particles = ({
       if (moveParticlesOnHover) {
         container.removeEventListener('mousemove', handleMouseMove);
       }
-      cancelAnimationFrame(animationFrameId);
+      removeAnimation(update);
       if (container.contains(gl.canvas)) {
         container.removeChild(gl.canvas);
       }

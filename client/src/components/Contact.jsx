@@ -79,7 +79,7 @@ const Contact = () => {
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto bg-white/[0.02] backdrop-blur-3xl p-8 md:p-16 rounded-[40px] shadow-2xl border border-white/10">
+        <div className="max-w-4xl mx-auto bg-white/[0.02] remove-blur bg-black/40 border border-white/10 p-8 md:p-16 rounded-[40px] shadow-2xl border border-white/10">
           <div className="grid lg:grid-cols-2 gap-16">
             <div className="space-y-8">
               <div>

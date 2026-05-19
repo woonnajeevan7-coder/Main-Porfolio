@@ -81,7 +81,7 @@ const ProjectCard = ({ project, onVisible }) => {
           className="w-full h-full relative group rounded-[32px] overflow-hidden"
         >
           <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] flex items-center justify-center backdrop-blur-sm">
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] flex items-center justify-center remove-blur bg-black/40 border border-white/10">
               <div className="flex flex-col items-center gap-6 scale-90 group-hover:scale-100 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
                   <div className="flex gap-4 items-center">
                       <LiquidAnimatedButton 
@@ -141,7 +141,7 @@ const Projects = () => {
                     </p>
                     <div className="flex flex-wrap gap-3">
                         {activeProject.tech.map((tech, i) => (
-                            <span key={i} className="px-4 py-2 bg-primary/10 text-primary text-xs font-bold rounded-full border border-primary/20 backdrop-blur-md">
+                            <span key={i} className="px-4 py-2 bg-primary/10 text-primary text-xs font-bold rounded-full border border-primary/20 remove-blur bg-black/40 border border-white/10">
                                 {tech}
                             </span>
                         ))}

@@ -55,7 +55,7 @@ const CertCard = ({ cert, index }) => {
       >
         <SpotlightCard 
           spotlightColor="rgba(108, 99, 255, 0.2)" 
-          className="glass rounded-3xl p-8 border border-white/10 shadow-2xl flex flex-col md:flex-row gap-8 items-center bg-black/40 backdrop-blur-xl"
+          className="glass rounded-3xl p-8 border border-white/10 shadow-2xl flex flex-col md:flex-row gap-8 items-center bg-black/40 remove-blur bg-black/40 border border-white/10"
         >
           <div className="w-full md:w-1/3 h-48 rounded-2xl overflow-hidden border border-white/5">
               <img src={cert.image} alt={cert.title} className="w-full h-full object-cover" />

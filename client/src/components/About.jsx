@@ -80,7 +80,7 @@ const About = React.memo(() => {
                     </ul>
                   </div>
 
-                  <div className="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                  <div className="p-4 rounded-xl bg-white/5 border border-white/10 remove-blur bg-black/40 border border-white/10">
                     <h3 className="text-lg font-bold text-primary mb-1">Currently Seeking:</h3>
                     <p className="text-slate-300 italic">
                       A Full Stack Development internship to gain real-world experience building responsive web applications using HTML, CSS, JavaScript, and React — while contributing clean, maintainable code and collaborating with a passionate engineering team.

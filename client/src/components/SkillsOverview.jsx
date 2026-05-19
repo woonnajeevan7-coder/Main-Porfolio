@@ -98,7 +98,7 @@ const SkillsOverview = () => {
       </svg>
 
       {/* Header */}
-      <header className="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+      <header className="fixed top-0 w-full z-50 bg-black/40 remove-blur bg-black/40 border border-white/10 border-b border-white/5 transition-all duration-300">
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link to="/" className="text-2xl font-black bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent tracking-tighter hover:scale-110 transition-transform">
@@ -167,7 +167,7 @@ const SkillsOverview = () => {
             </div>
 
             {/* Other Skills section */}
-            <div className="relative py-20 bg-white/5 rounded-[3rem] border border-white/5 backdrop-blur-2xl">
+            <div className="relative py-20 bg-white/5 rounded-[3rem] border border-white/5 remove-blur bg-black/40 border border-white/10">
               <h3 className="text-xs font-black uppercase tracking-[0.5em] text-white/30 mb-8">
                 ADVANCED CAPABILITIES
               </h3>
@@ -183,7 +183,7 @@ const SkillsOverview = () => {
             {/* Currently Learning */}
             <section className="mt-32 mb-40">
               <div className="inline-block p-1 rounded-3xl bg-gradient-to-r from-primary/50 to-secondary/50">
-                <div className="bg-black/90 backdrop-blur-xl px-12 py-6 rounded-[calc(1.5rem-4px)] border border-white/5">
+                <div className="bg-black/90 remove-blur bg-black/40 border border-white/10 px-12 py-6 rounded-[calc(1.5rem-4px)] border border-white/5">
                   <h3 className="text-[10px] font-black uppercase tracking-[0.5em] text-white/40 mb-3">
                     EXPLORING NOW
                   </h3>
@@ -207,7 +207,7 @@ const SkillsOverview = () => {
       </main>
 
       {/* Minimalistic Dark Footer */}
-      <footer className="relative z-10 py-20 px-6 border-t border-white/5 bg-black/60 backdrop-blur-3xl">
+      <footer className="relative z-10 py-20 px-6 border-t border-white/5 bg-black/60 remove-blur bg-black/40 border border-white/10">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center gap-12">
             <div className="text-center md:text-left">
