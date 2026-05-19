@@ -1,0 +1,103 @@
+:root {
+  --border-color: rgba(255, 255, 255, 0.08);
+  --background-dark: #060010;
+  --glow-radius: 250px;
+}
+
+.bento-grid-container {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.magic-bento-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-radius: 24px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
+  min-height: 180px;
+  overflow: hidden;
+
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+}
+
+.magic-bento-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+}
+
+.magic-bento-card.border-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.8)) 0%,
+    transparent 70%
+  );
+  border-radius: inherit;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  z-index: 5;
+}
+
+.card-content {
+  z-index: 5;
+}
+
+.particle {
+  pointer-events: none;
+  z-index: 10;
+  will-change: transform, opacity;
+}
+
+/* Grid Layouts */
+@media (min-width: 600px) {
+  .bento-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .bento-grid-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .magic-bento-card.wide { grid-column: span 2; }
+  .magic-bento-card.tall { grid-row: span 2; }
+  .magic-bento-card.large { grid-column: span 2; grid-row: span 2; }
+}
+
+.autohide .card-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.bento-spotlight {
+  will-change: transform, opacity;
+  pointer-events: none;
+}

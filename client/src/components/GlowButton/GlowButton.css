@@ -1,0 +1,62 @@
+.glow-button-wrapper {
+  position: relative;
+  border-radius: 9999px;
+  background: #000;
+  padding: 2px; /* width of the glow border */
+  display: inline-flex;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glow-button-wrapper:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+}
+
+.glow-button-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -100%; /* Make it large enough to rotate and cover edges */
+  background: conic-gradient(
+    from 0deg,
+    #transparent 0%,
+    rgba(168, 85, 247, 0.8) 25%,
+    rgba(56, 189, 248, 0.8) 50%,
+    #transparent 100%
+  );
+  animation: glow-spin 3s linear infinite;
+  z-index: 0;
+}
+
+.glow-button-content {
+  position: relative;
+  z-index: 1;
+  background: #0f172a; /* Inner button color */
+  border-radius: 9999px;
+  padding: 12px 28px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  transition: background 0.3s ease;
+}
+
+.glow-button-wrapper:hover .glow-button-content {
+  background: #1e293b;
+}
+
+.glow-button-icon {
+  transition: transform 0.3s ease;
+}
+
+.glow-button-wrapper:hover .glow-button-icon {
+  transform: translateX(4px);
+}
+
+@keyframes glow-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

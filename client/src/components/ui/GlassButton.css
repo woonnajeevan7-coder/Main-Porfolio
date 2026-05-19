@@ -1,0 +1,57 @@
+/* Glass Button Styles */
+.glass-button-wrap {
+  position: relative;
+  display: inline-block;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
+  color: #3D4852;
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 30px rgba(108, 99, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.glass-button-shadow {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 25px;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.25) 0%, transparent 70%);
+  filter: blur(12px);
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.glass-button-wrap:hover .glass-button-shadow {
+  opacity: 1;
+  bottom: -20px;
+}
+
+.glass-button-text {
+  position: relative;
+  display: block;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Specific Variant Colors (Optional) */
+.glass-button.success {
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 8px 30px rgba(34, 197, 94, 0.1);
+}
