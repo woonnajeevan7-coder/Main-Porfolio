@@ -9,7 +9,7 @@ import GlassIcons from './GlassIcons/GlassIcons'
 
 import GridScan from './GridScan/GridScan'
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://jeevan-portfolio-api.onrender.com/api';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
