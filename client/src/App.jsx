@@ -11,7 +11,7 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Resume from './components/Resume'
 import TargetCursor from './components/TargetCursor/TargetCursor'
-import GradualBlur from './components/GradualBlur/GradualBlur'
+
 import SmoothScroll from './components/SmoothScroll'
 import CertificationDetail from './components/CertificationDetail'
 import LoadingScreen from './components/LoadingScreen/LoadingScreen'
@@ -68,12 +68,6 @@ function App() {
             <Route path="/skills" element={<SkillsOverview />} />
           </Routes>
           <Footer />
-          <GradualBlur
-            preset="page-footer"
-            strength={1.5}
-            opacity={0.8}
-            animationSpeed={0.5}
-          />
         </div>
       </SmoothScroll>
     </Router>
