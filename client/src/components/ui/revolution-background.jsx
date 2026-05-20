@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 const vertexShader = `
   attribute vec4 position;
@@ -298,12 +299,12 @@ export const RevolutionBackground = () => {
         gl.uniform1f(intensityLocationRef.current, globalIntensity)
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
       }
-      animationFrameId = requestAnimationFrame(animate)
+      addAnimation(animate)
     }
     animate()
     return () => {
       if (cleanup) cleanup()
-      cancelAnimationFrame(animationFrameId)
+      removeAnimation(animate)
     }
   }, [globalIntensity])
 

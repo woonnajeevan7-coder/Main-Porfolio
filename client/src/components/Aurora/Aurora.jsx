@@ -185,8 +185,12 @@ export function Aurora(props) {
     );
     observer.observe(ctn);
 
+    let lastTime = 0;
+
     const update = (t) => {
       if (!isVisible) return;
+      if (t - lastTime < 16) return;
+      lastTime = t;
       
       const { time: propTime = t * 0.01, speed: propSpeed = 1.0 } = propsRef.current;
       

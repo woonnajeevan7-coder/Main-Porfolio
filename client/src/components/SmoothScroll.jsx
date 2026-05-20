@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
+import { addAnimation, removeAnimation } from '../utils/animationManager';
 
 const SmoothScroll = ({ children }) => {
   useEffect(() => {
@@ -21,10 +22,9 @@ const SmoothScroll = ({ children }) => {
 
     function raf(time) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    addAnimation(raf);
 
     // Optional: Connect scroll events to other libraries like GSAP if needed
     // lenis.on('scroll', (e) => {
@@ -32,6 +32,7 @@ const SmoothScroll = ({ children }) => {
     // });
 
     return () => {
+      removeAnimation(raf);
       lenis.destroy();
     };
   }, []);

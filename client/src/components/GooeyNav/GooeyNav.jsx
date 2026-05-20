@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import './GooeyNav.css';
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 const GooeyNav = ({
   items,
@@ -63,7 +64,7 @@ const GooeyNav = ({
         point.classList.add('point');
         particle.appendChild(point);
         element.appendChild(particle);
-        requestAnimationFrame(() => {
+        addAnimation(() => {
           element.classList.add('active');
         });
         setTimeout(() => {

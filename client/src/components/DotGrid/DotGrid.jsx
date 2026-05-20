@@ -1,6 +1,7 @@
 import { useRef, useEffect, useCallback, useMemo } from 'react';
 import { gsap } from 'gsap';
 import './DotGrid.css';
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 // Remove InertiaPlugin since it is a Club GSAP premium plugin and might break the build.
 // Instead we can simulate the physics using simple GSAP tweens if needed, or if it works,
@@ -145,11 +146,11 @@ const DotGrid = ({
         ctx.restore();
       }
 
-      rafId = requestAnimationFrame(draw);
+      addAnimation(draw);
     };
 
     draw();
-    return () => cancelAnimationFrame(rafId);
+    return () => removeAnimation(draw);
   }, [proximity, baseColor, activeRgb, baseRgb, circlePath]);
 
   useEffect(() => {

@@ -32,8 +32,8 @@ const Skills = () => {
     <section ref={ref} id="skills" className="py-16 relative overflow-hidden bg-black min-h-screen flex flex-col justify-center">
       {/* Premium Background Glow */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 blur-[120px] rounded-full animate-pulse-slow"></div>
-        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-secondary/15 blur-[100px] rounded-full animate-pulse-slower"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 blur-[30px] rounded-full animate-pulse-slow"></div>
+        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-secondary/15 blur-[30px] rounded-full animate-pulse-slower"></div>
       </div>
 
       {/* FloatingLines Background */}
@@ -77,7 +77,7 @@ const Skills = () => {
                     alt={logo.name} 
                     className="w-12 h-12 mb-3 relative z-20 transition-all duration-700 group-hover:scale-125 group-hover:drop-shadow-[0_0_15px_var(--glow)]"
                     style={{ '--glow': logo.glow }}
-                  />
+                   loading="lazy" decoding="async" />
                   <span className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em] relative z-20 group-hover:text-white transition-colors">
                     {logo.name}
                   </span>
@@ -101,7 +101,7 @@ const Skills = () => {
                     alt={logo.name} 
                     className="w-12 h-12 mb-3 relative z-20 transition-all duration-700 group-hover:scale-125 group-hover:drop-shadow-[0_0_15px_var(--glow)]"
                     style={{ '--glow': logo.glow }}
-                  />
+                   loading="lazy" decoding="async" />
                   <span className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em] relative z-20 group-hover:text-white transition-colors">
                     {logo.name}
                   </span>

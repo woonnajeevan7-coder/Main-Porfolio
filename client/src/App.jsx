@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 import TargetCursor from './components/TargetCursor/TargetCursor'
 import SmoothScroll from './components/SmoothScroll'
 import LoadingScreen from './components/LoadingScreen/LoadingScreen'
+import SEO from './components/SEO'
 
 const About = lazy(() => import('./components/About'));
 const Skills = lazy(() => import('./components/Skills'));
@@ -46,6 +47,7 @@ function App() {
 
   return (
     <Router>
+      <SEO />
       <AnimatePresence mode="wait">
         {loading && <LoadingScreen key="loader" />}
       </AnimatePresence>

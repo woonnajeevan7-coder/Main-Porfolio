@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 import './ProfileCard.css';
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 const DEFAULT_INNER_GRADIENT = 'linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)';
 
@@ -104,12 +105,12 @@ const ProfileCardComponent = ({
       const stillFar = Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05;
 
       if (stillFar || document.hasFocus()) {
-        rafId = requestAnimationFrame(step);
+        addAnimation(step);
       } else {
         running = false;
         lastTs = 0;
         if (rafId) {
-          cancelAnimationFrame(rafId);
+          removeAnimation(step);
           rafId = null;
         }
       }
@@ -119,7 +120,7 @@ const ProfileCardComponent = ({
       if (running) return;
       running = true;
       lastTs = 0;
-      rafId = requestAnimationFrame(step);
+      addAnimation(step);
     };
 
     return {
@@ -146,7 +147,7 @@ const ProfileCardComponent = ({
         return { x: currentX, y: currentY, tx: targetX, ty: targetY };
       },
       cancel() {
-        if (rafId) cancelAnimationFrame(rafId);
+        if (rafId) removeAnimation(step);
         rafId = null;
         running = false;
         lastTs = 0;
@@ -200,11 +201,11 @@ const ProfileCardComponent = ({
         shell.classList.remove('active');
         leaveRafRef.current = null;
       } else {
-        leaveRafRef.current = requestAnimationFrame(checkSettle);
+        addAnimation(checkSettle);
       }
     };
-    if (leaveRafRef.current) cancelAnimationFrame(leaveRafRef.current);
-    leaveRafRef.current = requestAnimationFrame(checkSettle);
+    if (leaveRafRef.current) removeAnimation(step);
+    addAnimation(checkSettle);
   }, [tiltEngine]);
 
   const handleDeviceOrientation = useCallback(
@@ -275,7 +276,7 @@ const ProfileCardComponent = ({
       shell.removeEventListener('click', handleClick);
       window.removeEventListener('deviceorientation', deviceOrientationHandler);
       if (enterTimerRef.current) window.clearTimeout(enterTimerRef.current);
-      if (leaveRafRef.current) cancelAnimationFrame(leaveRafRef.current);
+      if (leaveRafRef.current) removeAnimation(step);
       tiltEngine.cancel();
       shell.classList.remove('entering');
     };

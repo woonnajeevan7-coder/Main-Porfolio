@@ -127,8 +127,8 @@ const GradientSvg = ({
       transition: { duration: 50, repeat: Infinity, ease: 'linear' },
     },
     notHovered: {
-      gradientTransform: gradientTransform,
-      transition: { duration: 10, repeat: Infinity, ease: 'linear' },
+      gradientTransform: gradientTransform[0],
+      transition: { duration: 1, ease: 'linear' },
     },
   };
 
@@ -164,13 +164,13 @@ const GradientSvg = ({
                   stopColor: stopConfigs[0].stopColor,
                 }}
                 animate={{
-                  offset: stopConfigs.map((config) => config.offset),
-                  stopColor: stopConfigs.map((config) => config.stopColor),
+                  offset: isHovered ? stopConfigs.map((config) => config.offset) : stopConfigs[0].offset,
+                  stopColor: isHovered ? stopConfigs.map((config) => config.stopColor) : stopConfigs[0].stopColor,
                 }}
                 transition={{
-                  duration: 0,
+                  duration: isHovered ? 50 : 1,
                   ease: 'linear',
-                  repeat: Infinity,
+                  repeat: isHovered ? Infinity : 0,
                 }}
               />
             </AnimatePresence>

@@ -9,6 +9,7 @@
 
 import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl';
 import React, { useEffect, useRef } from 'react';
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 function debounce(func, wait) {
   let timeout;
@@ -454,10 +455,11 @@ class AppCore {
     }
     this.renderer.render({ scene: this.scene, camera: this.camera });
     this.scroll.last = this.scroll.current;
-    this.raf = window.requestAnimationFrame(this.update.bind(this));
+    addAnimation(this.boundUpdate);
   }
 
   addEventListeners() {
+    this.boundUpdate = this.update.bind(this);
     this.boundOnResize = this.onResize.bind(this);
     this.boundOnWheel = this.onWheel.bind(this);
     this.boundOnTouchDown = this.onTouchDown.bind(this);
@@ -474,7 +476,7 @@ class AppCore {
   }
 
   destroy() {
-    window.cancelAnimationFrame(this.raf);
+    removeAnimation(this.boundUpdate);
     window.removeEventListener('resize', this.boundOnResize);
     window.removeEventListener('wheel', this.boundOnWheel);
     window.removeEventListener('mousedown', this.boundOnTouchDown);

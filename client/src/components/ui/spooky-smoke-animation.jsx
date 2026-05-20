@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useRef } from 'react';
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 // --- FRAGMENT SHADER ---
 const fragmentShaderSource = `#version 300 es
@@ -166,13 +167,13 @@ export const SmokeBackground = ({
         let animationFrameId;
         const loop = (now) => {
             renderer.render(now);
-            animationFrameId = requestAnimationFrame(loop);
+            addAnimation(loop);
         };
         loop(0);
 
         return () => {
             window.removeEventListener('resize', handleResize);
-            cancelAnimationFrame(animationFrameId);
+            removeAnimation(loop);
             renderer.reset(); 
         };
     }, []);

@@ -1,6 +1,7 @@
 import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
 import { useEffect, useRef } from 'react';
 import './Galaxy.css';
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 const vertexShader = `
 attribute vec2 uv;
@@ -262,7 +263,7 @@ export default function Galaxy({
     let animateId;
 
     function update(t) {
-      animateId = requestAnimationFrame(update);
+      addAnimation(update);
       if (!disableAnimation) {
         program.uniforms.uTime.value = t * 0.001;
         program.uniforms.uStarSpeed.value = (t * 0.001 * starSpeed) / 10.0;
@@ -280,7 +281,7 @@ export default function Galaxy({
 
       renderer.render({ scene: mesh });
     }
-    animateId = requestAnimationFrame(update);
+    addAnimation(update);
     ctn.appendChild(gl.canvas);
 
     function handleMouseMove(e) {
@@ -301,7 +302,7 @@ export default function Galaxy({
     }
 
     return () => {
-      cancelAnimationFrame(animateId);
+      removeAnimation(update);
       window.removeEventListener('resize', resize);
       if (mouseInteraction) {
         ctn.removeEventListener('mousemove', handleMouseMove);

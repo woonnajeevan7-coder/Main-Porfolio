@@ -120,8 +120,8 @@ const CertificationDetail = () => {
       <section id="certifications" className="py-24 px-6 min-h-screen relative z-10 overflow-hidden">
         {/* Animated Glow Background (Subtle Overlay) */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
-          <div className="absolute -top-24 -left-24 w-[600px] h-[600px] bg-orange-500/5 blur-[120px] rounded-full animate-pulse" />
-          <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-500/5 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute -top-24 -left-24 w-[600px] h-[600px] bg-orange-500/5 blur-[30px] rounded-full animate-pulse" />
+          <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-blue-500/5 blur-[30px] rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
         </div>
 
         <div className="container mx-auto max-w-6xl relative z-10">
@@ -197,7 +197,7 @@ const CertificationDetail = () => {
                 </div>
 
                 <div className="w-full mb-8 h-40 rounded-3xl overflow-hidden border border-white/5 relative group-hover:border-white/10 transition-colors">
-                  <img src={cert.image} alt={cert.title} className="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+                  <img src={cert.image} alt={cert.title} className="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"  loading="lazy" decoding="async" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-60" />
                 </div>
 

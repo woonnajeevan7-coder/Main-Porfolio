@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 const identityMatrix =
   "1, 0, 0, 0, " +
@@ -104,8 +105,8 @@ export const AwardBadge = ({ type, place, link }) => {
     setDisableInOutOverlayAnimation(false);
     enterTimeout.current = setTimeout(() => setDisableInOutOverlayAnimation(true), 350);
     
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
+    addAnimation(() => {
+      addAnimation(() => {
         setFirstOverlayPosition((Math.abs(xCenter - e.clientX) + Math.abs(yCenter - e.clientY)) / 1.5);
       });
     });
@@ -140,8 +141,8 @@ export const AwardBadge = ({ type, place, link }) => {
     setCurrentMatrix(oppositeMatrix);
     setTimeout(() => setCurrentMatrix(identityMatrix), 200);
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
+    addAnimation(() => {
+      addAnimation(() => {
         setDisableInOutOverlayAnimation(false);
         leaveTimeout1.current = setTimeout(() => setFirstOverlayPosition(-firstOverlayPosition / 4), 150);
         leaveTimeout2.current = setTimeout(() => setFirstOverlayPosition(0), 300);

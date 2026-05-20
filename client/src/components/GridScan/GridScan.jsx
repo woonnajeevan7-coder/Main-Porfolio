@@ -3,6 +3,7 @@ import { BloomEffect, ChromaticAberrationEffect, EffectComposer, EffectPass, Ren
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import './GridScan.css';
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 const vert = `
 varying vec2 vUv;
@@ -551,12 +552,12 @@ export const GridScan = ({
       } else {
         renderer.render(scene, camera);
       }
-      rafRef.current = requestAnimationFrame(tick);
+      addAnimation(tick);
     };
-    rafRef.current = requestAnimationFrame(tick);
+    addAnimation(tick);
 
     return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      if (rafRef.current) removeAnimation(tick);
       window.removeEventListener('resize', onResize);
       material.dispose();
       quad.geometry.dispose();
@@ -766,11 +767,11 @@ export const GridScan = ({
         if ('requestVideoFrameCallback' in HTMLVideoElement.prototype) {
           video.requestVideoFrameCallback(() => detect(performance.now()));
         } else {
-          requestAnimationFrame(detect);
+          addAnimation(detect);
         }
       };
 
-      requestAnimationFrame(detect);
+      addAnimation(detect);
     };
 
     start();

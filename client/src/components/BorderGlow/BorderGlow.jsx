@@ -1,5 +1,6 @@
 import { useRef, useCallback, useEffect } from 'react';
 import './BorderGlow.css';
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 function parseHSL(hslStr) {
   const match = hslStr.match(/([\d.]+)\s*([\d.]+)%?\s*([\d.]+)%?/);
@@ -42,10 +43,10 @@ function animateValue({ start = 0, end = 100, duration = 1000, delay = 0, ease =
     const elapsed = performance.now() - t0;
     const t = Math.min(elapsed / duration, 1);
     onUpdate(start + (end - start) * ease(t));
-    if (t < 1) requestAnimationFrame(tick);
+    if (t < 1) addAnimation(tick);
     else if (onEnd) onEnd();
   }
-  setTimeout(() => requestAnimationFrame(tick), delay);
+  setTimeout(() => addAnimation(tick), delay);
 }
 
 const BorderGlow = ({

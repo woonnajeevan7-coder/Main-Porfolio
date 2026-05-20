@@ -58,7 +58,7 @@ const CertCard = ({ cert, index }) => {
           className="glass rounded-3xl p-8 border border-white/10 shadow-2xl flex flex-col md:flex-row gap-8 items-center bg-black/40 remove-blur bg-black/40 border border-white/10"
         >
           <div className="w-full md:w-1/3 h-48 rounded-2xl overflow-hidden border border-white/5">
-              <img src={cert.image} alt={cert.title} className="w-full h-full object-cover" />
+              <img src={cert.image} alt={cert.title} className="w-full h-full object-cover"  loading="lazy" decoding="async" />
           </div>
           <div className="w-full md:w-2/3 flex flex-col h-full">
               <span className="text-primary text-xs font-bold tracking-widest uppercase mb-2 block">{cert.issuer}</span>

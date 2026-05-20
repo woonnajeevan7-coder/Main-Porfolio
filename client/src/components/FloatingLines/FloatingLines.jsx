@@ -12,6 +12,7 @@ import {
 } from 'three';
 
 import './FloatingLines.css';
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 const vertexShader = `
 precision highp float;
@@ -438,14 +439,14 @@ export default function FloatingLines({
       }
 
       renderer.render(scene, camera);
-      raf = requestAnimationFrame(renderLoop);
+      addAnimation(renderLoop);
     };
     renderLoop();
 
     return () => {
       active = false;
 
-      cancelAnimationFrame(raf);
+      removeAnimation(renderLoop);
 
       if (ro) ro.disconnect();
 

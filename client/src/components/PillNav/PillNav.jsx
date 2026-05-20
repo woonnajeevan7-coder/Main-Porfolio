@@ -251,7 +251,7 @@ const PillNav = ({
                   WJ
                 </div>
              ) : typeof logo === 'string' && logo.startsWith('http') ? (
-                <img src={logo} alt={logoAlt} ref={logoImgRef} />
+                <img src={logo} alt={logoAlt} ref={logoImgRef}  loading="lazy" decoding="async" />
              ) : (
                 <div className="text-xl font-black text-white" ref={logoImgRef}>{logo}</div>
              )}

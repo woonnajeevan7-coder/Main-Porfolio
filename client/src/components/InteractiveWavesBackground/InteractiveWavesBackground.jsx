@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useRef, useEffect } from 'react';
+import { addAnimation, removeAnimation } from '../../utils/animationManager';
 
 class Grad {
   constructor(x, y, z) {
@@ -85,7 +86,6 @@ export const InteractiveWavesBackground = ({
   const linesRef = useRef([]);
   const mouseRef = useRef({ x: -100, y: -100, lx: 0, ly: 0, sx: 0, sy: 0, v: 0, vs: 0, a: 0, set: false });
   const configRef = useRef({ lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove, xGap, yGap });
-  const frameIdRef = useRef(null);
 
   useEffect(() => {
     configRef.current = { lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove, xGap, yGap };
@@ -228,11 +228,10 @@ export const InteractiveWavesBackground = ({
       container.style.setProperty('--y', `${mouse.sy}px`);
       movePoints(t);
       drawLines();
-      frameIdRef.current = requestAnimationFrame(tick);
     };
 
     setSize();
-    frameIdRef.current = requestAnimationFrame(tick);
+    addAnimation(tick);
     window.addEventListener('mousemove', (e) => {
       const b = boundingRef.current;
       mouseRef.current.x = e.clientX - b.left;
@@ -242,13 +241,13 @@ export const InteractiveWavesBackground = ({
 
     return () => {
       resizeObserver.disconnect();
-      cancelAnimationFrame(frameIdRef.current);
+      removeAnimation(tick);
     };
   }, []);
 
   return (
     <div ref={containerRef} style={{ backgroundColor, ...style }} className={`absolute top-0 left-0 w-full h-full overflow-hidden ${className}`}>
-      <div className="absolute top-0 left-0 bg-primary/20 rounded-full blur-[90px] w-[350px] h-[350px] pointer-events-none"
+      <div className="absolute top-0 left-0 bg-primary/20 rounded-full blur-[30px] w-[350px] h-[350px] pointer-events-none"
         style={{ transform: 'translate3d(calc(var(--x) - 175px), calc(var(--y) - 175px), 0)', willChange: 'transform', opacity: mouseRef.current.set ? 1 : 0 }} />
       <div className="absolute top-0 left-0 bg-primary/40 rounded-full blur-[30px] w-[60px] h-[60px] pointer-events-none"
         style={{ transform: 'translate3d(calc(var(--x) - 30px), calc(var(--y) - 30px), 0)', willChange: 'transform', opacity: mouseRef.current.set ? 1 : 0 }} />

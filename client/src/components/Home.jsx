@@ -5,6 +5,7 @@ import Hyperspeed from './Hyperspeed/Hyperspeed'
 import GlassIcons from './GlassIcons/GlassIcons'
 import GradientText from './GradientText/GradientText'
 import LightBeamButton from './LightBeamButton/LightBeamButton'
+import SEO from './SEO'
 
 const Home = () => {
   const ref = useRef(null)
@@ -23,7 +24,12 @@ const Home = () => {
   };
 
   return (
-    <section ref={ref} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950">
+    <>
+      <SEO 
+        title="Jeevan | Full Stack Developer & Performance Engineer"
+        description="Crafting immersive digital experiences with high-performance code and premium design aesthetics."
+      />
+      <section ref={ref} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950">
       {/* Hyperspeed Background */}
       <div className="absolute inset-0 z-0">
         <Hyperspeed />
@@ -57,6 +63,7 @@ const Home = () => {
         </div>
       </div>
     </section>
+    </>
   )
 }
 
