@@ -197,7 +197,7 @@ const Particles = ({
 
     const update = t => {
       if (!isVisible) return;
-      
+
       const delta = t - lastTime;
       lastTime = t;
       elapsed += delta * speed;

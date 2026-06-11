@@ -35,42 +35,42 @@ export function ParallaxStarsBackground({
       <div className="absolute inset-0 bg-radial-space z-0" />
 
       {/* Stars Layer 1 (Small) */}
-      <div 
+      <div
         className="absolute left-0 top-0 w-[1px] h-[1px] bg-transparent z-10 animate-[animStar_50s_linear_infinite]"
-        style={{ 
+        style={{
           boxShadow: shadowsSmall,
           animationDuration: `${50 / speed}s`
         }}
       >
-        <div 
+        <div
           className="absolute top-[2000px] w-[1px] h-[1px] bg-transparent"
           style={{ boxShadow: shadowsSmall }}
         />
       </div>
 
       {/* Stars Layer 2 (Medium) */}
-      <div 
+      <div
         className="absolute left-0 top-0 w-[2px] h-[2px] bg-transparent z-10 animate-[animStar_100s_linear_infinite]"
-        style={{ 
+        style={{
           boxShadow: shadowsMedium,
           animationDuration: `${100 / speed}s`
         }}
       >
-        <div 
+        <div
           className="absolute top-[2000px] w-[2px] h-[2px] bg-transparent"
           style={{ boxShadow: shadowsMedium }}
         />
       </div>
 
       {/* Stars Layer 3 (Big) */}
-      <div 
+      <div
         className="absolute left-0 top-0 w-[3px] h-[3px] bg-transparent z-10 animate-[animStar_150s_linear_infinite]"
-        style={{ 
+        style={{
           boxShadow: shadowsBig,
           animationDuration: `${150 / speed}s`
         }}
       >
-        <div 
+        <div
           className="absolute top-[2000px] w-[3px] h-[3px] bg-transparent"
           style={{ boxShadow: shadowsBig }}
         />

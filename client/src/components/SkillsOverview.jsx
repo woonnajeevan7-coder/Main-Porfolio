@@ -32,7 +32,7 @@ const SkillsOverview = () => {
         <div className="relative w-32 h-32 transition-all duration-500 hover:scale-110">
           {/* Subtle Glow Behind Ring */}
           <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          
+
           <svg className="w-32 h-32 -rotate-90 relative z-10" viewBox="0 0 128 128">
             {/* Background Circle */}
             <circle
@@ -76,11 +76,11 @@ const SkillsOverview = () => {
 
   return (
     <div className="dark bg-black text-white min-h-screen selection:bg-primary/30 selection:text-white font-poppins relative overflow-hidden">
-      
+
       {/* Premium Background */}
       <div className="fixed inset-0 z-0">
-        <InteractiveWavesBackground 
-          backgroundColor="#000000" 
+        <InteractiveWavesBackground
+          backgroundColor="#000000"
           lineColor="rgba(99, 102, 241, 0.2)"
         />
         {/* Deep Overlay for readability */}
@@ -108,9 +108,9 @@ const SkillsOverview = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-10">
               {['Home', 'About', 'Skills', 'Certifications', 'Projects', 'GitHub', 'Contact'].map((item) => (
-                <Link 
+                <Link
                   key={item}
-                  to={item === 'Skills' ? '/skills' : item === 'Certifications' ? '/certifications' : '/'} 
+                  to={item === 'Skills' ? '/skills' : item === 'Certifications' ? '/certifications' : '/'}
                   className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-all hover:text-primary ${item === 'Skills' ? 'text-primary' : 'text-white/40'}`}
                 >
                   {item}
@@ -132,9 +132,9 @@ const SkillsOverview = () => {
           {isMobileMenuOpen && (
             <div className="md:hidden mt-4 pb-4 space-y-4 animate-fade-in border-t border-white/5 pt-4">
               {['Home', 'About', 'Skills', 'Certifications', 'Projects', 'GitHub', 'Contact'].map((item) => (
-                <Link 
+                <Link
                   key={item}
-                  to={item === 'Skills' ? '/skills' : item === 'Certifications' ? '/certifications' : '/'} 
+                  to={item === 'Skills' ? '/skills' : item === 'Certifications' ? '/certifications' : '/'}
                   className="block py-2 text-[10px] font-bold uppercase tracking-widest text-white/50 hover:text-white"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -155,7 +155,7 @@ const SkillsOverview = () => {
             </h2>
 
             <p className="max-w-2xl mx-auto text-slate-400 text-lg md:text-xl font-medium mb-20 animate-fade-in-up leading-relaxed opacity-80">
-              Merging technical precision with creative vision. My stack is built for scale, 
+              Merging technical precision with creative vision. My stack is built for scale,
               performance, and immersive user experiences.
             </p>
 
@@ -214,7 +214,7 @@ const SkillsOverview = () => {
               <h3 className="text-2xl font-black tracking-tighter mb-2">Woonna Jeevan</h3>
               <p className="text-white/30 text-[10px] font-bold uppercase tracking-[0.3em]">Full Stack Artisan</p>
             </div>
-            
+
             <div className="flex gap-12">
               <a href="tel:+918074958934" className="group flex flex-col items-center gap-2">
                 <div className="p-4 bg-white/5 rounded-2xl border border-white/10 group-hover:border-primary/50 transition-all">
@@ -230,7 +230,7 @@ const SkillsOverview = () => {
               </a>
             </div>
           </div>
-          
+
           <div className="mt-20 border-t border-white/5 pt-10 text-center">
             <p className="text-[9px] font-bold uppercase tracking-[0.4em] text-white/10">&copy; 2026 Crafted with Precision by WJ</p>
           </div>

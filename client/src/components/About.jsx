@@ -57,7 +57,7 @@ const About = React.memo(() => {
             <p className="text-lg text-slate-200 leading-relaxed drop-shadow">
               I'm a Computer Science undergraduate at SRM Institute of Science and Technology, specializing in full stack development with the MERN stack. I've built multiple real-world projects including an e-commerce platform, a weather forecast app, and a Firebase-powered donation tracker. I completed the Deloitte Technology Job Simulation and participated in two hackathons, sharpening my teamwork and problem-solving skills.
             </p>
-            
+
             <AnimatePresence>
               {isExpanded && (
                 <motion.div
@@ -90,7 +90,7 @@ const About = React.memo(() => {
               )}
             </AnimatePresence>
 
-            <GradientButton 
+            <GradientButton
               className="text-sm px-6 py-3"
               onClick={() => setIsExpanded(!isExpanded)}
             >

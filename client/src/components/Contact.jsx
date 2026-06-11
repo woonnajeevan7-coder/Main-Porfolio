@@ -77,7 +77,7 @@ const Contact = () => {
           />
         )}
       </div>
-      
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto bg-white/[0.02] remove-blur bg-black/40 border border-white/10 p-8 md:p-16 rounded-[40px] shadow-2xl border border-white/10">
           <div className="grid lg:grid-cols-2 gap-16">
@@ -85,11 +85,11 @@ const Contact = () => {
               <div>
                 <h2 className="text-5xl font-black text-white tracking-tighter mb-6">Let's <span className="text-primary">Connect</span></h2>
                 <p className="text-slate-400 text-lg leading-relaxed font-medium">
-                  Have a project in mind or just want to say hi? Feel free to reach out. 
+                  Have a project in mind or just want to say hi? Feel free to reach out.
                   I'm always open to discussing new opportunities or creative ideas.
                 </p>
               </div>
-              
+
               <div className="space-y-10">
                 <div className="flex items-center space-x-5">
                   <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center text-primary border border-white/10 shadow-inner">
@@ -126,8 +126,8 @@ const Contact = () => {
 
               <div className="space-y-2">
                 <label className="text-xs font-black uppercase tracking-widest text-slate-500 ml-1">Name</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
@@ -138,8 +138,8 @@ const Contact = () => {
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-black uppercase tracking-widest text-slate-500 ml-1">Email</label>
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
@@ -150,7 +150,7 @@ const Contact = () => {
               </div>
               <div className="space-y-2">
                 <label className="text-xs font-black uppercase tracking-widest text-slate-500 ml-1">Message</label>
-                <textarea 
+                <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
@@ -160,10 +160,10 @@ const Contact = () => {
                   placeholder="How can I help you?"
                 />
               </div>
-              
+
               <div className="pt-4">
-                <LightBeamButton 
-                  type="submit" 
+                <LightBeamButton
+                  type="submit"
                   disabled={loading}
                   className="w-full flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed py-4"
                 >

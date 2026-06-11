@@ -39,11 +39,11 @@ const Skills = () => {
       {/* FloatingLines Background */}
       <div className="absolute inset-0 z-0 opacity-80 scale-110">
         {isInView && (
-          <FloatingLines 
-            linesGradient={['#4338ca', '#6366f1', '#a855f7']} 
-            lineCount={[6, 6, 6]} 
-            interactive={true} 
-            animationSpeed={0.7} 
+          <FloatingLines
+            linesGradient={['#4338ca', '#6366f1', '#a855f7']}
+            lineCount={[6, 6, 6]}
+            interactive={true}
+            animationSpeed={0.7}
           />
         )}
       </div>
@@ -61,23 +61,23 @@ const Skills = () => {
 
         {/* 3D Rotatable Tickers */}
         <div className="perspective-2000 space-y-10">
-          
+
           {/* Tier 1: Left Scroll, Tilted Forward */}
           <div className="relative overflow-hidden glass rounded-[1.5rem] md:rounded-[2rem] py-8 md:py-12 rotate-x-6 md:rotate-x-12 pause-on-hover border-transparent shadow-[0_0_50px_rgba(0,0,0,0.5)]">
             {/* Gradient Edge Fade */}
             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none"></div>
             <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none"></div>
-            
+
             <div className="animate-scroll-left flex items-center gap-10 will-change-transform">
               {[...techLogosTier1, ...techLogosTier1, ...techLogosTier1].map((logo, idx) => (
                 <div key={idx} className="group flex flex-col items-center justify-center min-w-[100px] relative">
                   <div className="absolute inset-0 bg-[var(--glow)] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-full scale-125" style={{ '--glow': logo.glow }}></div>
-                  <img 
-                    src={logo.url} 
-                    alt={logo.name} 
+                  <img
+                    src={logo.url}
+                    alt={logo.name}
                     className="w-12 h-12 mb-3 relative z-20 transition-all duration-700 group-hover:scale-125 group-hover:drop-shadow-[0_0_15px_var(--glow)]"
                     style={{ '--glow': logo.glow }}
-                   loading="lazy" decoding="async" />
+                    loading="lazy" decoding="async" />
                   <span className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em] relative z-20 group-hover:text-white transition-colors">
                     {logo.name}
                   </span>
@@ -91,17 +91,17 @@ const Skills = () => {
             {/* Gradient Edge Fade */}
             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none"></div>
             <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none"></div>
-            
+
             <div className="animate-scroll-right flex items-center gap-10 will-change-transform">
               {[...techLogosTier2, ...techLogosTier2, ...techLogosTier2].map((logo, idx) => (
                 <div key={idx} className="group flex flex-col items-center justify-center min-w-[100px] relative">
                   <div className="absolute inset-0 bg-[var(--glow)] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-full scale-125" style={{ '--glow': logo.glow }}></div>
-                  <img 
-                    src={logo.url} 
-                    alt={logo.name} 
+                  <img
+                    src={logo.url}
+                    alt={logo.name}
                     className="w-12 h-12 mb-3 relative z-20 transition-all duration-700 group-hover:scale-125 group-hover:drop-shadow-[0_0_15px_var(--glow)]"
                     style={{ '--glow': logo.glow }}
-                   loading="lazy" decoding="async" />
+                    loading="lazy" decoding="async" />
                   <span className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em] relative z-20 group-hover:text-white transition-colors">
                     {logo.name}
                   </span>
@@ -116,7 +116,7 @@ const Skills = () => {
         <div className="mt-20 text-center">
           <Link to="/skills">
             <LightBeamButton>
-              Exploring Latest Technologies 
+              Exploring Latest Technologies
               <span className="inline-block ml-3 transition-transform group-hover:translate-x-2">→</span>
             </LightBeamButton>
           </Link>
