@@ -116,10 +116,10 @@ export default function Resume() {
                 </div>
                 
                 <div className="flex flex-wrap gap-3 text-[11px] md:text-sm font-semibold text-[#6B7280]">
-                  <a href="mailto:woonnajeevan7@gmail.com" className="nm-inset-small px-3 py-2 rounded-full hover:text-[#6C63FF] transition-colors">
+                  <a href="mailto:woonnajeevan7@gmail.com" className="nm-inset-small px-3 py-2 rounded-xl hover:text-[#6C63FF] transition-colors">
                     <Mail className="inline w-3 h-3 mr-1" /> woonnajeevan7@gmail.com
                   </a>
-                  <span className="nm-inset-small px-3 py-2 rounded-full whitespace-nowrap">
+                  <span className="nm-inset-small px-3 py-2 rounded-xl whitespace-nowrap">
                     <Phone className="inline w-3 h-3 mr-1" /> +91 8074958934
                   </span>
                 </div>
@@ -202,7 +202,7 @@ export default function Resume() {
                    <h4 className="text-xl font-black text-[#3D4852] tracking-tight">Full Stack Web Development</h4>
                    <p className="text-[#6C63FF] font-black text-sm uppercase tracking-widest">Internshala Specialization</p>
                  </div>
-                 <div className="nm-inset-small px-4 py-2 rounded-full h-fit mt-3 md:mt-0">
+                 <div className="nm-inset-small px-4 py-2 rounded-xl h-fit mt-3 md:mt-0">
                     <span className="text-[10px] font-black text-[#6B7280] uppercase">Oct 2025 - Present</span>
                  </div>
                </div>
@@ -276,7 +276,7 @@ export default function Resume() {
                     <span className="text-[9px] font-bold text-[#6B7280]">{p.date}</span>
                   </div>
                   <p className="text-[#6B7280] text-[10px] leading-relaxed mb-3">{p.desc}</p>
-                  <div className="inline-block nm-inset-small px-3 py-1 rounded-full text-[9px] font-black text-[#6C63FF] uppercase tracking-tighter">
+                  <div className="inline-block nm-inset-small px-3 py-1 rounded-xl text-[9px] font-black text-[#6C63FF] uppercase tracking-tighter">
                     {p.tech}
                   </div>
                 </div>

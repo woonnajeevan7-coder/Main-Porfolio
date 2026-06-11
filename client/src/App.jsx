@@ -15,7 +15,6 @@ const Projects = lazy(() => import('./components/Projects'));
 const Certifications = lazy(() => import('./components/Certifications'));
 const Contact = lazy(() => import('./components/Contact'));
 const Resume = lazy(() => import('./components/Resume'));
-const CertificationDetail = lazy(() => import('./components/CertificationDetail'));
 const SkillsOverview = lazy(() => import('./components/SkillsOverview'));
 
 const MainContent = () => (
@@ -67,7 +66,6 @@ function App() {
           <Suspense fallback={<div className="min-h-screen bg-black" />}>
             <Routes>
               <Route path="/" element={<MainContent />} />
-              <Route path="/certifications" element={<CertificationDetail />} />
               <Route path="/skills" element={<SkillsOverview />} />
             </Routes>
           </Suspense>

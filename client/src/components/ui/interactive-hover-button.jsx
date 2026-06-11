@@ -48,7 +48,7 @@ export default function InteractiveHoverButton({
     <div className={cn("glass-button-wrap group", classes)}>
       <motion.button
         className={cn(
-          'glass-button relative flex min-w-48 items-center justify-center overflow-hidden rounded-full border p-2 px-8 py-4 font-bold transition-all',
+          'glass-button relative flex min-w-48 items-center justify-center overflow-hidden rounded-2xl border p-2 px-8 py-4 font-bold transition-all',
           status === 'loading' && 'px-6',
         )}
         onClick={handleClick}
@@ -95,7 +95,7 @@ export default function InteractiveHoverButton({
           </motion.div>
         </AnimatePresence>
       </motion.button>
-      <div className="glass-button-shadow rounded-full"></div>
+      <div className="glass-button-shadow rounded-2xl"></div>
     </div>
   )
 }
