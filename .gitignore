@@ -25,6 +25,10 @@ out/
 .env.test.local
 .env.production.local
 
+# Backups
+backups/*.json
+backups/*.csv
+
 # IDEs and Editors
 .idea/
 .vscode/
