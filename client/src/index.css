@@ -21,32 +21,24 @@
     touch-action: pan-y;
   }
 
-  img {
-    will-change: transform;
-  }
-
-  .gpu-layer {
-    transform: translate3d(0,0,0);
-    will-change: transform;
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
-
-  .optimized-animation {
-    will-change: transform, opacity;
-  }
-
-  .remove-blur {
-    backdrop-filter: none !important;
-    filter: none !important;
-  }
-
-  html.lenis {
+  html.lenis, html.lenis body {
     height: auto;
   }
 
   .lenis.lenis-smooth {
     scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
   }
 
   /* GPU Acceleration Utilities */

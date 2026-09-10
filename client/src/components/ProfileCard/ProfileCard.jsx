@@ -204,7 +204,8 @@ const ProfileCardComponent = ({
         addAnimation(checkSettle);
       }
     };
-    if (leaveRafRef.current) removeAnimation(step);
+    if (leaveRafRef.current) removeAnimation(leaveRafRef.current);
+    leaveRafRef.current = checkSettle;
     addAnimation(checkSettle);
   }, [tiltEngine]);
 
@@ -276,7 +277,7 @@ const ProfileCardComponent = ({
       shell.removeEventListener('click', handleClick);
       window.removeEventListener('deviceorientation', deviceOrientationHandler);
       if (enterTimerRef.current) window.clearTimeout(enterTimerRef.current);
-      if (leaveRafRef.current) removeAnimation(step);
+      if (leaveRafRef.current) removeAnimation(leaveRafRef.current);
       tiltEngine.cancel();
       shell.classList.remove('entering');
     };

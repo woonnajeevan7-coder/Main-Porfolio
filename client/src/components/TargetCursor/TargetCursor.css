@@ -10,6 +10,21 @@
   transform: translate(-50%, -50%);
 }
 
+.target-cursor-wrapper.cursor-active-target {
+  mix-blend-mode: normal;
+}
+
+.target-cursor-wrapper.cursor-active-target .target-cursor-dot {
+  opacity: 0 !important;
+  transform: scale(0) !important;
+  visibility: hidden !important;
+}
+
+.target-cursor-wrapper.cursor-active-target .target-cursor-corner {
+  border-color: #ffffff;
+  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.8)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.8));
+}
+
 .target-cursor-dot {
   position: absolute;
   left: 50%;

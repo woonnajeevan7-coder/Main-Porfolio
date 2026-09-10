@@ -38,11 +38,12 @@ const Home = () => {
         <div className="container mx-auto px-6 relative z-10 text-center">
           <div className="mb-8">
             <GradientText
-              text="FULL STACK DEVELOPER"
               className="text-sm md:text-base font-bold tracking-[0.3em] uppercase mb-4 block"
               colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
               animationSpeed={3}
-            />
+            >
+              FULL STACK DEVELOPER
+            </GradientText>
             <h1 className="text-4xl md:text-6xl lg:text-8xl font-black text-white tracking-tighter mb-4 animate-in fade-in slide-in-from-top duration-1000">
               WOONNA <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">JEEVAN</span>
             </h1>

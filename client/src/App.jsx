@@ -16,6 +16,7 @@ const Certifications = lazy(() => import('./components/Certifications'));
 const Contact = lazy(() => import('./components/Contact'));
 const Resume = lazy(() => import('./components/Resume'));
 const SkillsOverview = lazy(() => import('./components/SkillsOverview'));
+const CertificationsOverview = lazy(() => import('./components/CertificationsOverview'));
 
 const MainContent = () => (
   <main>
@@ -67,6 +68,8 @@ function App() {
             <Routes>
               <Route path="/" element={<MainContent />} />
               <Route path="/skills" element={<SkillsOverview />} />
+              <Route path="/certifications" element={<CertificationsOverview />} />
+              <Route path="/certifications/:id" element={<CertificationsOverview />} />
             </Routes>
           </Suspense>
           <Footer />

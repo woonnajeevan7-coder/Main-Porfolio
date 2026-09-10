@@ -70,8 +70,8 @@ export const InteractiveWavesBackground = ({
   waveSpeedY = 0.005,
   waveAmpX = 40,
   waveAmpY = 25,
-  xGap = 20,
-  yGap = 48,
+  xGap = 32,
+  yGap = 60,
   friction = 0.93,
   tension = 0.006,
   maxCursorMove = 120,
@@ -96,10 +96,11 @@ export const InteractiveWavesBackground = ({
     const container = containerRef.current;
     if (!canvas || !container) return;
     ctxRef.current = canvas.getContext('2d');
+    let isVisible = true;
 
     const setSize = (entry) => {
       const rect = entry ? entry.contentRect : container.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       
       boundingRef.current = {
         width: rect.width,
@@ -146,6 +147,11 @@ export const InteractiveWavesBackground = ({
       for (let entry of entries) setSize(entry);
     });
     resizeObserver.observe(container);
+
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+    }, { threshold: 0.05 });
+    intersectionObserver.observe(container);
 
     const movePoints = (time) => {
       const lines = linesRef.current;
@@ -216,6 +222,7 @@ export const InteractiveWavesBackground = ({
     };
 
     const tick = (t) => {
+      if (!isVisible) return;
       const mouse = mouseRef.current;
       mouse.sx += (mouse.x - mouse.sx) * 0.18;
       mouse.sy += (mouse.y - mouse.sy) * 0.18;
@@ -232,15 +239,18 @@ export const InteractiveWavesBackground = ({
 
     setSize();
     addAnimation(tick);
-    window.addEventListener('mousemove', (e) => {
+    const handleMouseMove = (e) => {
       const b = boundingRef.current;
       mouseRef.current.x = e.clientX - b.left;
       mouseRef.current.y = e.clientY - b.top;
       mouseRef.current.set = true;
-    });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       resizeObserver.disconnect();
+      intersectionObserver.disconnect();
+      window.removeEventListener('mousemove', handleMouseMove);
       removeAnimation(tick);
     };
   }, []);

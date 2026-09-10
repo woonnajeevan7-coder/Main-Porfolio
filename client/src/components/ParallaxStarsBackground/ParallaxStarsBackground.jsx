@@ -13,10 +13,10 @@ export function ParallaxStarsBackground({
   className = "",
   speed = 1
 }) {
-  // Memoize shadows so they don't regenerate on re-renders
-  const shadowsSmall = useMemo(() => generateBoxShadows(700), []);
-  const shadowsMedium = useMemo(() => generateBoxShadows(200), []);
-  const shadowsBig = useMemo(() => generateBoxShadows(100), []);
+  // Memoize shadows with an optimized count to prevent GPU fillrate exhaustion
+  const shadowsSmall = useMemo(() => generateBoxShadows(120), []);
+  const shadowsMedium = useMemo(() => generateBoxShadows(40), []);
+  const shadowsBig = useMemo(() => generateBoxShadows(20), []);
 
   return (
     <div className={`relative w-full h-full overflow-hidden bg-[#090A0F] font-['Lato'] ${className}`}>

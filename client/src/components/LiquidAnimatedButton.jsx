@@ -1,59 +1,57 @@
 import React, { useState } from 'react';
-import { Liquid } from './ui/button-1';
-
-const COLORS = {
-  color1: '#FFFFFF',
-  color2: '#1E10C5',
-  color3: '#9089E2',
-  color4: '#FCFCFE',
-  color5: '#F9F9FD',
-  color6: '#B2B8E7',
-  color7: '#0E2DCB',
-  color8: '#0017E9',
-  color9: '#4743EF',
-  color10: '#7D7BF4',
-  color11: '#0B06FC',
-  color12: '#C5C1EA',
-  color13: '#1403DE',
-  color14: '#B6BAF6',
-  color15: '#C1BEEB',
-  color16: '#290ECB',
-  color17: '#3F4CC0',
-};
+import './LiquidAnimatedButton.css';
 
 const LiquidAnimatedButton = ({ children = "Github", href, icon: Icon, className = "" }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  
-  return (
-    <div className={`flex justify-center ${className}`}>
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className="relative inline-block px-8 py-3 w-40 h-[3.2em] group bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 border-t border-white/20 rounded-xl transition-all duration-300 hover:scale-[1.03] active:scale-95 shadow-glow-blue overflow-hidden"
-      >
-        {/* Liquid Glow Layer */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none">
-            <Liquid isHovered={isHovered} colors={COLORS} />
-        </div>
+  const [isClicked, setIsClicked] = useState(false);
 
-        {/* Inner Surface with Liquid Effect */}
-        <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
-          {/* Subtle Liquid inside on hover */}
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <Liquid isHovered={isHovered} colors={COLORS} />
-          </div>
-          
-          <div className="relative z-10 flex items-center gap-2.5 text-white transition-colors duration-300 font-bold tracking-tight text-[1.1rem]">
-            {Icon && <Icon size={20} />}
-            <span>{children}</span>
-          </div>
-        </div>
-      </a>
-    </div>
+  const handleClick = () => {
+    setIsClicked(true);
+    setTimeout(() => setIsClicked(false), 200);
+  };
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={handleClick}
+      className={`cursor-target liquid-btn-wrapper relative inline-flex items-center justify-center h-[46px] px-7 min-w-[155px] rounded-xl bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#2563eb] text-white overflow-hidden group transition-all duration-300 hover:scale-[1.03] active:scale-95 border-t border-white/25 select-none no-underline outline-none whitespace-nowrap ${className}`}
+    >
+      {/* Liquid Organic Wave Layer */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none rounded-xl">
+        {/* Wave 2 (Deeper indigo-blue wave) */}
+        <div 
+          className="animate-liquid-spin-2 absolute left-1/2 -bottom-[215px] group-hover:-bottom-[135px] w-[320px] h-[320px] rounded-[42%] bg-gradient-to-tr from-blue-700/60 via-indigo-600/50 to-cyan-500/40 opacity-70 group-hover:opacity-95 transition-all duration-700 ease-out"
+        />
+
+        {/* Wave 1 (Front bright cyan-blue wave) */}
+        <div 
+          className="animate-liquid-spin-1 absolute left-1/2 -bottom-[225px] group-hover:-bottom-[145px] w-[310px] h-[310px] rounded-[39%] bg-gradient-to-tr from-blue-500/50 via-cyan-400/45 to-blue-300/35 opacity-60 group-hover:opacity-90 transition-all duration-700 ease-out"
+        />
+
+        {/* Ambient Top Glow on Hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-500/25 via-transparent to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      </div>
+
+      {/* Button Content */}
+      <span className="relative z-10 flex items-center justify-center gap-2.5 font-bold tracking-tight text-[1.05rem] whitespace-nowrap">
+        {Icon && (
+          <Icon
+            size={19}
+            className="text-white group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300 shrink-0 pointer-events-none"
+          />
+        )}
+        <span>{children}</span>
+      </span>
+
+      {/* Glossy Top Glass Rim */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/5 to-transparent pointer-events-none rounded-xl" />
+
+      {/* Shimmer Light Beam */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:animate-shimmer-fast pointer-events-none" />
+    </a>
   );
 };
 
 export default LiquidAnimatedButton;
+

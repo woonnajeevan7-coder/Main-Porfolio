@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ExternalLink, Award, Calendar, CheckCircle2 } from "lucide-react";
+import { ExternalLink, ArrowRight, Award, Calendar, CheckCircle2 } from "lucide-react";
 import SpotlightCard from "./SpotlightCard/SpotlightCard";
 import { GlowButton } from "./ui/shiny-button-1";
 import ShinyText from "./ShinyText/ShinyText";
@@ -83,8 +83,17 @@ const CertCard = ({ cert, index }) => {
               <div className="flex items-center gap-4">
                 <GlowButton href={cert.link} target={cert.link.startsWith('/') ? undefined : "_blank"} rel="noopener noreferrer">
                   <div className="flex items-center gap-2">
-                    {cert.link.startsWith('/') ? 'View Details' : 'View Certificate'}
-                    <ExternalLink size={14} />
+                    {cert.link.startsWith('/') ? (
+                      <>
+                        <span>View Details</span>
+                        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                      </>
+                    ) : (
+                      <>
+                        <span>View Certificate</span>
+                        <ExternalLink size={14} />
+                      </>
+                    )}
                   </div>
                 </GlowButton>
                 <div className="px-4 py-1 rounded-full bg-white/5 border border-white/10 text-white/30 text-[10px] font-bold uppercase tracking-widest">Verified</div>

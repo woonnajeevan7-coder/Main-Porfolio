@@ -13,7 +13,7 @@ const GlowButton = ({ children, href, target, rel, className }) => {
   const isInternal = href && href.startsWith('/');
 
   const Content = () => (
-    <div className={`relative group inline-block ${className || ''}`}>
+    <div className={`cursor-target relative group inline-block ${className || ''}`}>
       {/* SVG Filters */}
       <svg style={{ position: 'absolute', width: 0, height: 0 }}>
         <filter width="300%" x="-100%" height="300%" y="-100%" id={filters.unopaq}>

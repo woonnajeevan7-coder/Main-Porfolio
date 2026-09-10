@@ -183,35 +183,27 @@ const GradientSvg = ({
 
 export const Liquid = ({ isHovered, colors }) => {
   return (
-    <>
-      {Array.from({ length: 7 }).map((_, index) => (
-        <div
-          key={index}
-          className={`absolute ${
-            index < 3 ? 'w-[443px] h-[121px]' : 'w-[756px] h-[207px]'
-          } ${
-            index === 0
-              ? 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 mix-blend-difference'
-              : index === 1
-                ? 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[164.971deg] mix-blend-difference'
-                : index === 2
-                  ? 'top-1/2 left-1/2 -translate-x-[53%] -translate-y-[53%] rotate-[-11.61deg] mix-blend-difference'
-                  : index === 3
-                    ? 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-[57%] rotate-[-179.012deg] mix-blend-difference'
-                    : index === 4
-                      ? 'top-1/2 left-1/2 -translate-x-[57%] -translate-y-1/2 rotate-[-29.722deg] mix-blend-difference'
-                      : index === 5
-                        ? 'top-1/2 left-1/2 -translate-x-[62%] -translate-y-[24%] rotate-[160.227deg] mix-blend-difference'
-                        : 'top-1/2 left-1/2 -translate-x-[67%] -translate-y-[29%] rotate-180 mix-blend-hard-light'
-          }`}
-        >
+    <div className='absolute inset-0 w-full h-full pointer-events-none overflow-hidden rounded-full'>
+      <div
+        className={`absolute w-[320px] h-[120px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 ${
+          isHovered ? 'opacity-100' : 'opacity-60'
+        }`}
+      >
+        <GradientSvg
+          className='w-full h-full'
+          isHovered={isHovered}
+          colors={colors}
+        />
+      </div>
+      {isHovered && (
+        <div className='absolute w-[360px] h-[140px] top-1/2 left-1/2 -translate-x-[53%] -translate-y-[53%] rotate-[-20deg] opacity-80 transition-opacity duration-300'>
           <GradientSvg
             className='w-full h-full'
             isHovered={isHovered}
             colors={colors}
           />
         </div>
-      ))}
-    </>
+      )}
+    </div>
   );
 };

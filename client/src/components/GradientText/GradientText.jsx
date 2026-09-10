@@ -4,6 +4,7 @@ import './GradientText.css';
 
 export default function GradientText({
   children,
+  text,
   className = '',
   colors = ['#5227FF', '#FF9FFC', '#B19EEF'],
   animationSpeed = 8,
@@ -92,7 +93,7 @@ export default function GradientText({
     >
       {showBorder && <motion.div className="gradient-overlay" style={{ ...gradientStyle, backgroundPosition }} />}
       <motion.div className="text-content" style={{ ...gradientStyle, backgroundPosition }}>
-        {children}
+        {children || text}
       </motion.div>
     </motion.div>
   );

@@ -21,10 +21,10 @@
   inset: -100%; /* Make it large enough to rotate and cover edges */
   background: conic-gradient(
     from 0deg,
-    #transparent 0%,
+    transparent 0%,
     rgba(168, 85, 247, 0.8) 25%,
     rgba(56, 189, 248, 0.8) 50%,
-    #transparent 100%
+    transparent 100%
   );
   animation: glow-spin 3s linear infinite;
   z-index: 0;

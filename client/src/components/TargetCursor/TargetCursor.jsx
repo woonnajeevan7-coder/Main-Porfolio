@@ -126,19 +126,25 @@ const TargetCursor = ({
     const moveHandler = e => moveCursor(e.clientX, e.clientY);
     window.addEventListener('mousemove', moveHandler);
 
+    let scrollCheckScheduled = false;
     const scrollHandler = () => {
-      if (!activeTarget || !cursorRef.current) return;
-      const mouseX = gsap.getProperty(cursorRef.current, 'x');
-      const mouseY = gsap.getProperty(cursorRef.current, 'y');
-      const elementUnderMouse = document.elementFromPoint(mouseX, mouseY);
-      const isStillOverTarget =
-        elementUnderMouse &&
-        (elementUnderMouse === activeTarget || elementUnderMouse.closest(targetSelector) === activeTarget);
-      if (!isStillOverTarget) {
-        if (currentLeaveHandler) {
-          currentLeaveHandler();
+      if (!activeTarget || !cursorRef.current || scrollCheckScheduled) return;
+      scrollCheckScheduled = true;
+      requestAnimationFrame(() => {
+        scrollCheckScheduled = false;
+        if (!activeTarget || !cursorRef.current) return;
+        const mouseX = gsap.getProperty(cursorRef.current, 'x');
+        const mouseY = gsap.getProperty(cursorRef.current, 'y');
+        const rect = activeTarget.getBoundingClientRect();
+        const isStillOverTarget =
+          mouseX >= rect.left && mouseX <= rect.right &&
+          mouseY >= rect.top && mouseY <= rect.bottom;
+        if (!isStillOverTarget) {
+          if (currentLeaveHandler) {
+            currentLeaveHandler();
+          }
         }
-      }
+      });
     };
     window.addEventListener('scroll', scrollHandler, { passive: true });
 
@@ -158,16 +164,7 @@ const TargetCursor = ({
     window.addEventListener('mouseup', mouseUpHandler);
 
     const enterHandler = e => {
-      const directTarget = e.target;
-      const allTargets = [];
-      let current = directTarget;
-      while (current && current !== document.body) {
-        if (current.matches(targetSelector)) {
-          allTargets.push(current);
-        }
-        current = current.parentElement;
-      }
-      const target = allTargets[0] || null;
+      const target = e.target?.closest?.(targetSelector) || null;
       if (!target || !cursorRef.current || !cornersRef.current) return;
       if (activeTarget === target) return;
       if (activeTarget) {
@@ -207,6 +204,13 @@ const TargetCursor = ({
         ease: 'power2.out'
       });
 
+      if (dotRef.current) {
+        gsap.to(dotRef.current, { opacity: 0, scale: 0, duration: 0.15 });
+      }
+      if (cursorRef.current) {
+        cursorRef.current.classList.add('cursor-active-target');
+      }
+
       corners.forEach((corner, i) => {
         gsap.to(corner, {
           x: targetCornerPositionsRef.current[i].x - cursorX,
@@ -223,6 +227,13 @@ const TargetCursor = ({
         targetCornerPositionsRef.current = null;
         gsap.set(activeStrengthRef, { current: 0, overwrite: true });
         activeTarget = null;
+
+        if (dotRef.current) {
+          gsap.to(dotRef.current, { opacity: 1, scale: 1, duration: 0.2 });
+        }
+        if (cursorRef.current) {
+          cursorRef.current.classList.remove('cursor-active-target');
+        }
 
         if (cornersRef.current) {
           const corners = Array.from(cornersRef.current);
@@ -295,6 +306,7 @@ const TargetCursor = ({
 
       spinTl.current?.kill();
       document.body.style.cursor = originalCursor;
+      cursorRef.current?.classList.remove('cursor-active-target');
 
       isActiveRef.current = false;
       targetCornerPositionsRef.current = null;

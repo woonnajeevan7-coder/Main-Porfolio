@@ -202,7 +202,22 @@ const MagicBento = ({
     document.body.appendChild(spotlight);
     spotlightRef.current = spotlight;
 
-    const handleMouseMove = e => {
+    let isGridVisible = false;
+    let rafId = null;
+    let lastEvent = null;
+
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      isGridVisible = entry.isIntersecting;
+      if (!isGridVisible && spotlightRef.current) {
+        spotlightRef.current.style.opacity = '0';
+      }
+    }, { threshold: 0.1 });
+    intersectionObserver.observe(gridRef.current);
+
+    const updateSpotlight = () => {
+      rafId = null;
+      if (!isGridVisible || !lastEvent || !gridRef.current) return;
+      const e = lastEvent;
       const cards = gridRef.current.querySelectorAll('.magic-bento-card');
       let isVisible = false;
 
@@ -220,11 +235,21 @@ const MagicBento = ({
         card.style.setProperty('--glow-intensity', intensity.toString());
       });
 
-      gsap.to(spotlight, { left: e.clientX, top: e.clientY, opacity: isVisible ? 1 : 0, duration: 0.15 });
+      gsap.to(spotlight, { left: e.clientX, top: e.clientY, opacity: isVisible ? 1 : 0, duration: 0.15, overwrite: 'auto' });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    const handleMouseMove = e => {
+      if (!isGridVisible) return;
+      lastEvent = e;
+      if (!rafId) {
+        rafId = requestAnimationFrame(updateSpotlight);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      intersectionObserver.disconnect();
       window.removeEventListener('mousemove', handleMouseMove);
       spotlight.remove();
     };
